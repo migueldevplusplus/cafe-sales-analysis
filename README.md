@@ -1,62 +1,71 @@
-Café Sales Data Analysis
+# Café Sales Data Analysis — End-to-End BI Pipeline
 
-Author: Miguel Mora
+In the competitive food and beverage industry, data-driven decisions are the key to optimizing inventory and increasing profitability. This project demonstrates a complete Business Intelligence workflow: transforming raw, inconsistent café transaction data into a high-impact interactive dashboard.
 
-Tools: MySQL, Power BI
+The pipeline leverages **MySQL** for robust data engineering (cleaning, validation, and feature engineering) and **Power BI** for advanced data visualization and trend analysis.
 
-Dataset: Adapted from Kaggle
+---
+
+## Project Gallery
+
+**Executive Sales Dashboard**
+*An interactive Power BI report showcasing revenue trends, product performance, and customer spending patterns.*
+![Power BI Dashboard](cafe_sales_analysis/dashboard_screenshot01.png)
+
+![Power BI Dashboard2](cafe_sales_analysis/dashboard_screenshot02.png)
+
+---
+
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Tools Used](#tools-used)
+- [Data Cleaning Process](#data-cleaning-process)
+- [Feature Engineering](#feature-engineering)
+- [Insights & Results](#insights--results)
+- [Conclusions](#conclusions)
+
+---
+
+## Overview
+This project focuses on analyzing café sales data to uncover trends and customer behavior. The goal was to transform a dataset with missing values and inconsistencies into a reliable source of truth. By combining SQL for the "heavy lifting" of data prep and Power BI for the final presentation, the project delivers actionable business insights.
+
+## Features
+- **Comprehensive Cleaning:** Removal of duplicates, normalization of naming conventions, and handling of null/invalid values.
+- **Financial Validation:** Recalculation of total spending and price audits to ensure accounting accuracy.
+- **Temporal Analysis:** Transformation of raw timestamps into granular time dimensions (Month, Day, Weekday/Weekend).
+- **Advanced Categorization:** Logic-driven grouping of products and payment methods for better reporting.
+
+## Tools Used
+- **MySQL:** Data extraction, cleaning, and transformation (ETL).
+- **Power BI:** Data modeling, DAX measures, and interactive visualization.
+- **Dataset:** Adapted from Kaggle (Café transaction records).
+
+## Data Cleaning Process
+To move from raw data to a reliable dataset, the following SQL strategy was implemented:
+* **Deduplication:** Identified and removed duplicate records based on unique Transaction IDs.
+* **Standardization:** Converted column names to lowercase underscore format for cross-platform compatibility.
+* **Numeric Audit:** Recalculated `total_spent` fields and removed records with non-positive values in quantity or price.
+* **Handling Inconsistencies:** Replaced "UNKNOWN" or "ERROR" entries with standardized NULL placeholders.
+* **Date Formatting:** Converted string-based timestamps into proper Date objects to enable time-series analysis.
+
+## Feature Engineering
+Several analytical columns were engineered in SQL to add layers to the analysis:
+* **item_category:** Classified products into *Drink*, *Food*, or *Dessert*.
+* **payment_type:** Grouped various methods into *Electronic* or *Cash*.
+* **spending_category:** Segmented transactions into *Low*, *Medium*, or *High* based on value.
+* **Temporal Dimensions:** Added `day_type` (Weekday vs. Weekend) and `transaction_month` for seasonal trend tracking.
+
+## Insights & Results
+* **Product Performance:** Drinks are the volume leaders, but food items generate a significantly higher average ticket value.
+* **Payment Trends:** Electronic payments (Credit Card/Digital Wallets) are dominant, suggesting a tech-savvy customer base.
+* **Temporal Patterns:** Weekends drive higher-value "treat" transactions, while weekdays provide steady, consistent traffic.
+* **Seasonality:** Identified specific months with peak sales, highlighting the ideal timing for marketing campaigns.
+
+## Conclusions
+The project highlights the critical importance of structured data preparation. **SQL** ensured that the insights were built on a foundation of accurate data, while **Power BI** turned those numbers into a story. These results provide a roadmap for the café to optimize pricing, staff scheduling, and promotional timing.
+
+---
 
 
-
-📖 Introduction
-
-This project focuses on analyzing café sales data to uncover trends, customer behavior, and key business insights. The goal is to transform raw, inconsistent data into a reliable and structured dataset ready for analysis and visualization. The process combines SQL for data cleaning and transformation with Power BI for reporting and insight generation.
-
-📈 Data Exploration
-
-- The first step was to explore the raw dataset, which included columns such as transaction ID, item, quantity, price per unit, payment method, location, and transaction date.
-
-- During the exploration, several data quality issues were identified, including duplicated records, missing or invalid values, inconsistent naming conventions, and incorrect data types.
-
-- This step helped define the cleaning strategy and the transformations required to prepare the dataset for analysis.
-
-🧹 Data Cleaning Process
-
-- Duplicate records were removed by keeping only unique transaction IDs.
-- Column names were standardized to lowercase with underscores for consistency.
-- The total_spent field was recalculated as quantity multiplied by price_per_unit to ensure accuracy.
-- Invalid or missing entries such as UNKNOWN, ERROR, or empty fields were replaced with NULL or standardized placeholders.
-- Numeric validation was applied to remove rows with zero or negative values in quantity or price fields.
-- Transaction dates were converted into proper date formats, allowing for time-based grouping and analysis.
-- After cleaning, the dataset was fully consistent, with no duplicates or invalid records remaining.
-
-🔧 Feature Engineering
-
-- Several new analytical columns were created to enhance insights.
-- The item_category column was used to classify products into Drink, Food, Dessert, or Unknown.
-- The payment_type column was introduced to group payment methods into Electronic, Cash, or Unknown.
-- The spending_category column was designed to classify transactions based on total spending as Low, Medium, or High.
-- Additional columns such as transaction_month, transaction_day, and day_type (Weekday or Weekend) were added to support temporal analysis.
-
-📊 Data Visualization and Analysis
-
-- The cleaned dataset was imported into Power BI to develop an interactive dashboard.
-- The dashboard included visual representations of total revenue, sales trends by month, item performance, payment distribution, and spending patterns by weekday and weekend.
-- These visualizations helped identify relationships and patterns that were not visible in the raw data.
-- Through this analysis, it became possible to observe the café’s operational dynamics and customer behavior more clearly.
-
-💡 Insights and Results
-
-- Drinks represented the most frequently purchased category, while food items generated higher average revenue per transaction.
-- Electronic payments, such as credit card and digital wallet, were dominant, reflecting a shift toward cashless transactions.
-- Weekends showed higher-value transactions, although weekdays had more consistent daily sales volume.
-- Some months displayed strong seasonal peaks, which suggests opportunities for targeted promotional campaigns.
-- These insights can guide pricing strategies, promotional timing, and customer experience improvements.
-
-🧭 Conclusions
-
-The cleaning and analysis process demonstrated the importance of structured data preparation. SQL ensured accuracy and consistency, while Power BI provided an intuitive platform to visualize complex relationships. The combination of both tools resulted in clear, actionable insights that can help the café make better business decisions, optimize operations, and increase profitability.
-
-
-Thanks for reading!
-Feel free to connect with me on LinkedIn or explore more projects on my GitHub profile.
+*Thanks for reading!*
